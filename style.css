@@ -1,0 +1,12 @@
+.padre {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0.5rem;
+}
+
+.hijo {
+    width: 5rem;
+    height: 5rem;
+    border: 0.1rem solid gray;
+}
