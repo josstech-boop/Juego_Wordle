@@ -22,7 +22,7 @@ let letras = [];//arreglo de las letras ingresadas.
 const analizarPalabra = () => {
     //aqui se va analizar la palabra en esta funcion
 
-    this.removeEventListener('keyup', this)
+    this.removeEventListener('keyup', llenarTeclas)
 
     if (letras.length == 5) {
         let temporal = letras.slice(0, 6)
@@ -61,7 +61,6 @@ const analizarPalabra = () => {
 }
 
 const llenarTeclas = () => {
-    this.addEventListener('keyup', (event) => {
         console.log(palabraEscondida)//Para ver la palabra y realizar proebas
         //console.log(event.key.toUpperCase())
         if (event.key.toUpperCase() == 'BACKSPACE') {
@@ -103,9 +102,8 @@ const llenarTeclas = () => {
 
             }, 4000)
         }
-    })
 }
-
+this.addEventListener('keyup', llenarTeclas)
 function pintarColor() {
     //Se pinta el color segun el resultado
     console.log('Hola desde pintar')
