@@ -15,53 +15,52 @@ let mensajeError = document.querySelector('.mensaje-error')
 //variable para estar en la posicion del div donde se colocara la letra
 let indiceHijo = 0
 let ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-let banderita = true
+let banderita = true;
 
 let letras = [];//arreglo de las letras ingresadas.
 
-
 const analizarPalabra = () => {
-
     //aqui se va analizar la palabra en esta funcion
+
+    this.removeEventListener('keyup', llenarTeclas)
 
     if (letras.length == 5) {
         let temporal = letras.slice(0, 6)
         temporal = temporal.join();
         temporal = temporal.replaceAll(',', '')
-        palabraEscondida == temporal ? console.log('Felicidades!!!') : pintarColor()
+        palabraEscondida == temporal ? finalizarJuego(banderita) : pintarColor()
     } else if (letras.length == 10) {
-        let temporal = letras.slice(5,11)
+        let temporal = letras.slice(5, 11)
         temporal = temporal.join();
         temporal = temporal.replaceAll(',', '')
-        palabraEscondida == temporal ? console.log('Felicidades!!') : pintarColor()
+        palabraEscondida == temporal ? finalizarJuego(banderita) : pintarColor()
     } else if (letras.length == 15) {
-        let temporal = letras.slice(10,16)
+        let temporal = letras.slice(10, 16)
         temporal = temporal.join();
         temporal = temporal.replaceAll(',', '')
-        palabraEscondida == temporal ? console.log('Felicidades') : pintarColor()
+        palabraEscondida == temporal ? finalizarJuego(banderita) : pintarColor()
     } else if (letras.length == 20) {
-        let temporal = letras.slice(15,21)
+        let temporal = letras.slice(15, 21)
         temporal = temporal.join();
         temporal = temporal.replaceAll(',', '')
-        palabraEscondida == temporal ? console.log('Felicidades!!') : pintarColor()
+        palabraEscondida == temporal ? finalizarJuego(banderita) : pintarColor()
     } else if (letras.length == 25) {
-        let temporal = letras.slice(20,16)
+        let temporal = letras.slice(20, 16)
         temporal = temporal.join();
         temporal = temporal.replaceAll(',', '')
-        palabraEscondida == temporal ? console.log('Felicidades!!!') : pintarColor()
-    } else if (letras.length == 30) {
-        let temporal = letras.slice(25,31)
+        palabraEscondida == temporal ? finalizarJuego(banderita) : pintarColor()
+    } else if (letras.length >= 30) {
+        let temporal = letras.slice(25, 31)
         temporal = temporal.join();
         temporal = temporal.replaceAll(',', '')
-        palabraEscondida == temporal ? console.log('Felicidades!!!') : pintarColor()
-        bandertia = false;
+        palabraEscondida == temporal ? banderita = true : banderita = false;
+        finalizarJuego(banderita)
     }
 
 
 }
 
 const llenarTeclas = () => {
-    this.addEventListener('keyup', (event) => {
         console.log(palabraEscondida)//Para ver la palabra y realizar proebas
         //console.log(event.key.toUpperCase())
         if (event.key.toUpperCase() == 'BACKSPACE') {
@@ -93,7 +92,7 @@ const llenarTeclas = () => {
                 analizarPalabra()
             }
 
-        } else {
+        } else {///tambien validar la tecla ENTER !importat
 
             mensajeError.classList.remove('d-none')
             mensajeError.textContent = 'La tecla que selecciono no esta permitida'
@@ -103,12 +102,24 @@ const llenarTeclas = () => {
 
             }, 4000)
         }
-    })
 }
-
+this.addEventListener('keyup', llenarTeclas)
 function pintarColor() {
     //Se pinta el color segun el resultado
     console.log('Hola desde pintar')
+}
+
+function finalizarJuego(resultado) {
+    console.log('Finalizado')
+    if (resultado) {
+        console.log('Felicidades!!!')
+    } else {
+        console.log('El juego termino')
+    }
+    //El juego termino!!
+    //le envio true o false
+    //Realiza combios de ganodor o perdedor 
+    //habilitar un boton reiniciar
 }
 //si banderita es true entonces se va ejecurtar la funcion la banderita hace que se detenga la funcion para verificar si es o no es la palabra si no es , entonces banderita va hacer true siempre si la palabra si es correcta entonces banderita sera false 
 
