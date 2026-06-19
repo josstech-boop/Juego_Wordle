@@ -23,6 +23,7 @@ const analizarPalabra = () => {
     //aqui se va analizar la palabra en esta funcion
 
     this.removeEventListener('keyup', llenarTeclas)
+    //Validadr teclas enter y borrar estas si deben funcionar
 
     if (letras.length == 5) {
         let temporal = letras.slice(0, 6)
@@ -60,7 +61,7 @@ const analizarPalabra = () => {
 
 }
 
-const llenarTeclas = () => {
+const llenarTeclas = (event) => {
         console.log(palabraEscondida)//Para ver la palabra y realizar proebas
         //console.log(event.key.toUpperCase())
         if (event.key.toUpperCase() == 'BACKSPACE') {
@@ -68,6 +69,8 @@ const llenarTeclas = () => {
                 indiceHijo--
                 arrayhijos[indiceHijo].textContent = ''
                 letras.splice(indiceHijo, 1)//Elimino la letra del arreglo
+            }else{
+
             }
 
         } else if (ABC.includes(event.key.toUpperCase())) {
@@ -78,7 +81,7 @@ const llenarTeclas = () => {
             indiceHijo++
 
             //de en 5 en 5 siempre va analizar la palabra 
-            if (indiceHijo == 5) {
+            if (indiceHijo == 5) {//validar si selecciono borrar despues y borrar habilitar un boton. o botone spara cada tecla como el wordle real.
                 analizarPalabra()
             } else if (indiceHijo == 10) {
                 analizarPalabra()
@@ -105,11 +108,17 @@ const llenarTeclas = () => {
 }
 this.addEventListener('keyup', llenarTeclas)
 function pintarColor() {
+
+    this.addEventListener('keyup', llenarTeclas)//Validar que se active despues de pintar los colores y colocar un boton para reiniicar
+    ///validar si el usuario aun quiere borrar
+
     //Se pinta el color segun el resultado
-    console.log('Hola desde pintar')
+    console.log('Hola desde pintar') 
 }
 
 function finalizarJuego(resultado) {
+    this.removeEventListener('keyup', llenarTeclas)
+
     console.log('Finalizado')
     if (resultado) {
         console.log('Felicidades!!!')
@@ -123,5 +132,5 @@ function finalizarJuego(resultado) {
 }
 //si banderita es true entonces se va ejecurtar la funcion la banderita hace que se detenga la funcion para verificar si es o no es la palabra si no es , entonces banderita va hacer true siempre si la palabra si es correcta entonces banderita sera false 
 
-banderita == true ? llenarTeclas() : console.log('se termino el juego ')
+//banderita == true ? llenarTeclas(): console.log('se termino el juego ')
 
