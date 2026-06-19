@@ -57,8 +57,6 @@ const analizarPalabra = () => {
         palabraEscondida == temporal ? banderita = true : banderita = false;
         finalizarJuego(banderita)
     }
-
-
 }
 
 const llenarTeclas = (event) => {
